@@ -44,7 +44,6 @@ class MainActivity : AppCompatActivity() {
             Profile(firstName = "Janus", lastName = "Nielsen", age = 43),
             Profile(firstName = "Mikkel", lastName = "Jensen", age = 27),
             Profile(firstName = "Nadja", lastName = "Iversen", age = 20),
-            Profile(firstName = "LorteLars", lastName = "Lars Lort", age = 105),
         )
 
         // Profile Adapter
