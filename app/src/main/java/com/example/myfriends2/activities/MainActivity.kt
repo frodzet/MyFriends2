@@ -1,6 +1,6 @@
 @file:Suppress("DEPRECATION")
 
-package com.example.myfriends2
+package com.example.myfriends2.activities
 
 import android.content.Intent
 import android.net.Uri
@@ -8,14 +8,19 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myfriends2.entities.Profile
+import com.example.myfriends2.adapters.ProfileAdapter
+import com.example.myfriends2.R
 
 
 class MainActivity : AppCompatActivity() {
 
     // RequestCodes
+    private val GET_PROFILE_DATA = 100
     private val SELECT_PICTURE = 200
 
     private lateinit var profilesList: MutableList<Profile>
@@ -47,11 +52,12 @@ class MainActivity : AppCompatActivity() {
         )
 
         // Profile Adapter
-        profileAdapter = ProfileAdapter(profilesList, listener = { prof, pos ->
-            lastClickedProfile = prof
-            lastClickedIndex = pos
+        profileAdapter = ProfileAdapter(profilesList, listener = { profile: Profile, position: Int ->
+            lastClickedProfile = profile
+            lastClickedIndex = position
             imageChooser()
         })
+
 
         // Profile View (RecyclerView)
         profileRecyclerView = findViewById(R.id.profilesRecyclerView)
@@ -84,7 +90,29 @@ class MainActivity : AppCompatActivity() {
 
                 profileRecyclerView.requestLayout()
             }
+
+            if (requestCode == GET_PROFILE_DATA) {
+                addProfile(data)
+            }
         }
+    }
+
+    private fun openAddFriend() {
+        val intent = Intent(this@MainActivity, AddFriendActivity::class.java)
+        intent.action = Intent.ACTION_GET_CONTENT
+
+        startActivityForResult(intent, GET_PROFILE_DATA)
+    }
+
+    private fun addProfile(data: Intent?) {
+        val firstName: String? = data?.getStringExtra("firstName")
+        val lastName: String? = data?.getStringExtra("lastName")
+
+        profilesList.add(Profile(firstName = firstName, lastName = lastName, age = 25))
+
+        profileAdapter.notifyItemInserted(profilesList.size)
+
+        profileRecyclerView.scrollToPosition(profilesList.size - 1)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -97,12 +125,10 @@ class MainActivity : AppCompatActivity() {
         // Handle item selection
         return when (item.itemId) {
             R.id.menuItemAddFriend -> {
-                profilesList.add(Profile());
-                profileAdapter.notifyItemInserted(profilesList.size)
+                openAddFriend()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
-
 }

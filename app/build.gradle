@@ -4,10 +4,10 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 31
 
     defaultConfig {
-        applicationId "com.example.myfriends2"
+        applicationId "com.example.myfriends3"
         minSdk 30
         targetSdk 32
         versionCode 1

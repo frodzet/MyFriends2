@@ -16,13 +16,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyFriends2">
         <activity
-            android:name=".FriendDetailsActivity"
+            android:name=".activities.AddFriendActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.FriendDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".friend_detail_activity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
