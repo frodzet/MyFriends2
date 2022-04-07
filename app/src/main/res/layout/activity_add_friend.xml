@@ -13,15 +13,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:ems="10"
         android:hint="@string/first_name"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
-        android:labelFor="@id/editTextFirstName"
         android:minHeight="48dp"
-        android:textColorHint="#757575"
+        android:nextFocusDown="@id/editTextLastName"
+        app:layout_constraintEnd_toStartOf="@+id/editTextLastName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:importantForAutofill="no" />
+        tools:ignore="TextContrastCheck" />
 
     <EditText
         android:id="@+id/editTextLastName"
@@ -29,16 +31,31 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:ems="10"
         android:hint="@string/last_name"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
-        android:labelFor="@id/editTextLastName"
         android:minHeight="48dp"
-        android:textColorHint="#757575"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editTextFirstName"
         app:layout_constraintTop_toTopOf="parent"
-        android:importantForAutofill="no" />
+        tools:ignore="TextContrastCheck" />
+
+
+    <EditText
+        android:id="@+id/editTextAge"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="@string/age"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/editTextFirstName"
+        app:layout_constraintStart_toStartOf="@+id/editTextFirstName"
+        app:layout_constraintTop_toBottomOf="@+id/editTextFirstName" />
 
     <Button
         android:id="@+id/buttonAddProfile"

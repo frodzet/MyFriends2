@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        this.title = "My Friends 2.0"
 
         initializeVariables()
         initializeEvents()
@@ -77,6 +78,7 @@ class MainActivity : AppCompatActivity() {
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURE)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {
@@ -107,8 +109,9 @@ class MainActivity : AppCompatActivity() {
     private fun addProfile(data: Intent?) {
         val firstName: String? = data?.getStringExtra("firstName")
         val lastName: String? = data?.getStringExtra("lastName")
+        val age: Int? = data?.getIntExtra("age", 0)
 
-        profilesList.add(Profile(firstName = firstName, lastName = lastName, age = 25))
+        profilesList.add(Profile(firstName = firstName, lastName = lastName, age = age))
 
         profileAdapter.notifyItemInserted(profilesList.size)
 

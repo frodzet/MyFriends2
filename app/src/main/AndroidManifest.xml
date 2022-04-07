@@ -22,9 +22,6 @@
             android:name=".activities.FriendDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".friend_detail_activity"
-            android:exported="false" />
-        <activity
             android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>
